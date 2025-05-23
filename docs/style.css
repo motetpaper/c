@@ -35,9 +35,12 @@ button {
 }
 
 .adbox {
-  width: 350px;
+/*  width: 350px;
   height: 350px;
-  text-align: center;
+  text-align: center;*/
+
+  visibility: hidden;
+  display: none;
 }
 
 .previewbox {
