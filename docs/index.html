@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Chinese Korean Seal Chop Generator</title>
+
+  <!-- // site info // -->
+  <link rel="canonical" href="https://chop.ink">
+  <meta name="keywords" content="chinese, korean, seal chop, korean, dojang, 도장, stickers, family crest, stationery">
+  <meta name="description" content="Create colorful Chinese or Korean seal chops. Make stickers or custom stationery.">
+  <meta http-equiv="expires" content="Wed, 31 Dec 2025 23:59:59 GMT">
+
+  <!-- // icons // -->
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+  <!-- // appearance // -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <link rel="manifest" href="./manifest.json"/>
+
+
+  <script type="text/javascript" src="./node_modules/jspdf/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+<div id='wrap'>
+  <center>
+    <table>
+      <tr>
+        <td class="previewbox">
+          <img id="preview"
+            width="300" height="300"
+            alt="Chinese or Korean Seal Chop Image"
+            title="Chinese or Korean Seal Chop Image"
+            src="chop200.png"/>
+
+
+          <br/>
+          <abbr title="You can input a Chinese or Korean name. Most Chinese or Korean character should also work.">xingming [?]</abbr>
+
+          <button title="save your chop image" id="savebtn">CHOP</button>
+          <button title="make chop paper" id="makebtn">PAPER</button>
+          <!--
+          <button title="copy your chop image" id="copybtn">COPY</button>-->
+          <br/>
+          <input name="x" id="xm" type="text" value="姓名字" maxlength="4"><br/>
+        </td>
+        <td class="paint">
+
+          <abbr title="Paper color is the color that matches the web page background.">paper</abbr><br/>
+          <input title="Paper color is the color that matches the web page background." name="p" id="colorp" type="color" value="#FFFFFF"><br/>
+
+          <abbr title="Background color is the color behind foreground and above the paper.">background</abbr><br/>
+          <input title="Background color is the color behind foreground and above the paper." name="b" id="colorb" type="color" value="#32A852"><br/>
+
+          <abbr title="Foreground color is the color behind the text.">foreground</abbr><br/>
+          <input title="Foreground color is the color behind the text." name="f" id="colorf" type="color" value="#FFFFFF"><br/>
+
+          <abbr title="Ink color is the text color.">ink</abbr><br/>
+          <input name="i" title="Ink color is the text color." id="colori" type="color" value="#003300"><br/>
+        </td>
+        <td class="adbox">
+          &nbsp;
+        </td>
+      </tr>
+      <tr class="footer">
+        <td colspan="3">
+          MOTETPAPER &copy; 2025
+          <div id="aboutbox">
+            <h1>Chinese Korean Seal Chop Image Generator</h1>
+            <br/><span>v2.0.2</span>
+            &nbsp;
+          </div>
+        </td>
+      </tr>
+    </table>
+  </center>
+</div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

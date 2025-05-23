@@ -1,0 +1,15 @@
+{
+    "short_name": "CHOPINK",
+    "name": "CHOPINK",
+    "icons": [
+      {
+        "src": "./icons/icon512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#FF3300",
+    "background_color": "#FF3300"
+  }

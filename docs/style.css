@@ -1,0 +1,76 @@
+body {
+  background-color: white;
+  font-family: arial;
+}
+
+h1 {
+  font-size: 70pt;
+}
+
+abbr {
+  cursor: pointer;
+}
+
+input[type=color] {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+input[type=text] {
+  font-size: 50pt;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  text-align: center;
+}
+
+button {
+  font-weight: 900;
+  width: 70px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.adbox {
+  width: 350px;
+  height: 350px;
+  text-align: center;
+}
+
+.previewbox {
+  width: 350px;
+  height: 350px;
+  background-color: white;
+  text-align: center;
+}
+
+.footer {
+  vertical-align: top;
+}
+
+#preview {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+}
+
+#wrap .paint {
+  text-align: center;
+  width: 150px;
+  font-size: 12pt;
+}
+
+#aboutbox {
+  font-size: 12pt;
+}
+
+#savebtn {
+  margin-left: 50px;
+}
+
+#copybtn {
+  /* empty *?
+}
