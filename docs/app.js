@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', (evt)=>{
         case 'savebtn':
           savethat(evt);
           break;
-        case 'makebtn':
+        case 'printbtn':
           save_paper(evt);
           break;
         default:
@@ -162,9 +162,7 @@ async function copythat(evt) {
   // EXPERIMENTAL, creates tianzige paper with chop
   async function save_paper(evt) {
 
-    const doc = new jspdf({
-      units: 'in',
-    });
+    const doc = new jspdf();
 
     // grid box (sq, tzg, mzg)
     const boximg = GridsObject.tzg({

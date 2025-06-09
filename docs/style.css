@@ -52,6 +52,7 @@ button {
 
 .footer {
   vertical-align: top;
+  font-size: 18pt;
 }
 
 #preview {
@@ -75,5 +76,19 @@ button {
 }
 
 #copybtn {
-  /* empty *?
+  /* empty */
+}
+
+#makerpopover {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border: 100px solid rgba(0, 0, 0, .25);
+  width: 80%;
+  height: 300px;
+  padding: 25px;
+}
+
+#makerpopover button {
+  margin: 0;
 }

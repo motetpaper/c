@@ -24,6 +24,7 @@
   <script type="text/javascript" src="./js/jspdf/dist/jspdf.umd.min.js"></script>
 </head>
 <body>
+
 <div id='wrap'>
   <center>
     <table>
@@ -40,9 +41,8 @@
           <abbr title="You can input a Chinese or Korean name. Most Chinese or Korean character should also work.">xingming [?]</abbr>
 
           <button title="save your chop image" id="savebtn">CHOP</button>
-          <button title="make chop paper" id="makebtn">PAPER</button>
-          <!--
-          <button title="copy your chop image" id="copybtn">COPY</button>-->
+          <button popovertarget="makerpopover" title="make chop paper" p>MAKE ...</button>
+
           <br/>
           <input name="x" id="xm" type="text" value="姓名字" maxlength="4"><br/>
         </td>
@@ -66,16 +66,19 @@
       </tr>
       <tr class="footer">
         <td colspan="3">
-          MOTETPAPER &copy; 2025
+          MOTETPAPER &copy; 2025<br/>
           <div id="aboutbox">
             <h1>Chinese Korean Seal Chop Image Generator</h1>
-            <br/><span>v2.1.5</span>
-            &nbsp;
           </div>
+v2.2.1
         </td>
       </tr>
     </table>
   </center>
+</div>
+<div id="makerpopover" popover>
+  <h2>Make cool stuff with your chop</h2>
+  <button title="save your chop image" id="printbtn">MAKE</button> TIAN ZI GE Chinese practice grid paper with your personal chop
 </div>
   <script type="module" src="app.js"></script>
 </body>
