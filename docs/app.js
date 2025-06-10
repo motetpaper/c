@@ -1,9 +1,9 @@
 //
 // app.js
-// job    :
-// git    : https://github.com/motetpaper/chop9
+// job    : makes a personal seal chop
+// job    : makes custom printable paper with the chop
+// git    : https://github.com/motetpaper/c
 // lic    : MIT
-//
 //
 //
 //
@@ -11,10 +11,14 @@
 import { SealChopObject } from './obj/SealChopObject.js'
 import { GridsObject } from './obj/GridsObject.js';
 
+// keeps namespace clear and predictable
 window.jspdf = jspdf.jsPDF;
 
 // the chop object
 const chop = new SealChopObject();
+
+// branding for digital paper products
+const branding = 'MOTETPAPER © 2025, <https://chop.ink>';
 
 // parameters (params) collected in built-in browser object
 let params = new URLSearchParams();
@@ -59,9 +63,6 @@ document.addEventListener('DOMContentLoaded', (evt)=>{
   btns.forEach((b)=>{
     b.addEventListener(t, (evt)=>{
       switch(evt.target.id) {
-        case 'copybtn':
-//          copythat(evt);
-          break;
         case 'savebtn':
           savethat(evt);
           break;
@@ -131,6 +132,7 @@ async function savethat(evt) {
   fetch(img.src)
     .then((r)=>r.blob())
     .then((b)=>{
+
       const xm = params.get('x');
       const url = URL.createObjectURL(b);
       const a = document.createElement('a');
@@ -138,61 +140,87 @@ async function savethat(evt) {
       a.download = `motetpaper-chop.png`;
       a.click();
 
+      console.log( '[app.js] chop saved!' );
+
       const tmp = evt.target.innerText;
       evt.target.innerText = 'SAVED!'
       setTimeout(function(){
         evt.target.innerText = tmp;
       }, 1500);
-      console.log( '[app.js] chop saved!' );
+
     });
 }
 
 
-async function copythat(evt) {
-  navigator.clipboard.writeText( img.src ).then(() => {
-    const tmp = evt.target.innerText;
-    evt.target.innerText = 'COPIED!'
+// EXPERIMENTAL, creates tianzige paper with chop
+async function save_paper(evt) {
+
+  // create new jsPDF instance using inches
+  const doc = new jspdf({
+    unit: 'in'
+  });
+
+  // grid box (sq, tzg, mzg)
+  // tzg (size is matter of clarity, now functoin)
+  const boximg = GridsObject.tzg({
+    size: 300,
+  })
+
+  const chopimg = localStorage.getItem('chopimg');
+
+  // default tzg box size
+  const bx = 0.75;
+
+  // margins around the paper
+  const margin = 0.5;
+
+  // spaces (distance) between the boxes
+  const dx = 0.125;
+
+  // page dims
+  const w = doc.getPageWidth();
+  const h = doc.getPageHeight();
+
+  // initials and finals
+  const xi = margin;
+  const yi = margin;
+  const xf = w - margin;
+  const yf = h - margin;
+
+  // paper print offset
+  const yoffset = bx;
+
+  // chop pocket dims
+  const cx = bx * 2 + dx;
+  const xpocket = xf - cx - (bx / 2);
+  const ypocket = yi + yoffset;
+
+  // for loops that draw boxes within the margins
+  for(let y = yi+yoffset; y < (yf-bx); y+=(bx+dx)) {
+    for(let x = xi; x < (xf-bx); x+=(bx+dx)) {
+      doc.addImage(boximg,'PNG', x, y, bx, bx);
+    }
+  }
+
+  // put a big outline rectangle behind the chop
+  // covers the four corner boxes in the pocket
+  doc.setDrawColor('white')
+  doc.rect(xpocket,ypocket,cx,cx);
+
+  // add the chop to the pocket
+  doc.addImage(chopimg,'PNG',xpocket, ypocket, cx, cx);
+
+  // add branding
+  doc.text(xi,yf+dx, branding)
+
+  // work complete
+  doc.save('motetpaper-tianzige-chop.pdf');
+
+  console.log( '[app.js] paper saved!' );
+
+  const tmp = evt.target.innerText;
+    evt.target.innerText = 'SAVED!'
     setTimeout(function(){
       evt.target.innerText = tmp;
     }, 1500);
-    console.log( '[app.js] chop copied!' );
-  });
 }
-
-  // EXPERIMENTAL, creates tianzige paper with chop
-  async function save_paper(evt) {
-
-    const doc = new jspdf();
-
-    // grid box (sq, tzg, mzg)
-    const boximg = GridsObject.tzg({
-      size: 300,
-    })
-
-    const chopimg = localStorage.getItem('chopimg');
-
-    for(let i = 1; i < 15; i++) {
-      for(let j = 1; j < 11; j++) {
-        if(i < 3 && j > 8) {
-            // four squares in upper right corner
-            if( i === 1 && j === 9) {
-              doc.addImage(chopimg,'PNG',j*18,i*18,33,33);
-            }
-        } else {
-
-            // the rest of the grid
-            doc.addImage(boximg,'PNG',j*18,i*18,15,15);
-        }
-     }
-    }
-
-    doc.save('motetpaper-tianzige-chop.pdf')
-
-
-    const tmp = evt.target.innerText;
-      evt.target.innerText = 'SAVED!'
-      setTimeout(function(){
-        evt.target.innerText = tmp;
-      }, 1500);
-    console.log( '[app.js] paper saved!' );
-  }
